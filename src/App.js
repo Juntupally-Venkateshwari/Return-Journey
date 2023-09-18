@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import UserRegistrationForm from './Components/UserRegistrationForm';
+import GreenLightRedLight from './Components/GreenLightRedLight';
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const handleStartGame = (userData) => {
+    setUser(userData);
+  };
+
+  const handleGameEnd = (isWinner) => {
+    alert(isWinner ? 'Congratulations! You won!' : 'Game Over!');
+    setUser(null);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Squid Game: Green Light Red Light</h1>
+      {!user ? (
+        <UserRegistrationForm onStartGame={handleStartGame} />
+      ) : (
+        <GreenLightRedLight user={user} onGameEnd={handleGameEnd} />
+      )}
     </div>
   );
 }
