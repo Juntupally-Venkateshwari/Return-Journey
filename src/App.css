@@ -1,6 +1,10 @@
 .App {
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto';
+}
+
+.main-heading {
+  color: rgb(35, 33, 206);
 }
 
 .registration-form,
@@ -23,6 +27,16 @@
   background-color: green;
 }
 
+.green-color {
+  color: green;
+}
+.win-text {
+  color: green;
+}
+.red-color {
+  color: red;
+}
+
 .red {
   background-color: red;
 }
@@ -33,4 +47,7 @@
 
 .result {
   font-weight: bold;
+}
+.heading {
+  font-family: 'Roboto';
 }

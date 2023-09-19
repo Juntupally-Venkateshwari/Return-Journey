@@ -4,24 +4,27 @@ import UserRegistrationForm from './Components/UserRegistrationForm';
 import GreenLightRedLight from './Components/GreenLightRedLight';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [gameDifficulty, setGameDifficulty] = useState(null);
+  const [isGameWon, setIsGameWon] = useState(false);
+  const [userData, setUserData] = useState(null);
 
-  const handleStartGame = (userData) => {
-    setUser(userData);
+  const handleGameStart = (difficulty, user) => {
+    setGameDifficulty(difficulty);
+    setIsGameWon(false)
+    setUserData(user);
   };
 
-  const handleGameEnd = (isWinner) => {
-    alert(isWinner ? 'Congratulations! You won!' : 'Game Over!');
-    setUser(null);
+  const handleGameEnd = (isWon) => {
+    setIsGameWon(isWon);
   };
 
   return (
     <div className="App">
-      <h1>Squid Game: Green Light Red Light</h1>
-      {!user ? (
-        <UserRegistrationForm onStartGame={handleStartGame} />
+      <h1 className='main-heading'>Squid Game - <span className='green-color'>Green Light</span>, <span className='red-color'>Red Light</span></h1>
+      {!gameDifficulty ? (
+        <UserRegistrationForm onStartGame={handleGameStart} />
       ) : (
-        <GreenLightRedLight user={user} onGameEnd={handleGameEnd} />
+        <GreenLightRedLight difficulty={gameDifficulty} onGameEnd={handleGameEnd} user={userData}/>
       )}
     </div>
   );
